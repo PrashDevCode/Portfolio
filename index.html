@@ -1,160 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prashant Singh | Portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
-  <body class="bg-gray-100 text-gray-900">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed w-full top-0 left-0 z-50">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center py-4">
-        <h1 class="text-2xl font-bold text-indigo-600">Prashant Singh</h1>
-        <ul class="hidden md:flex space-x-8 font-medium">
-          <li><a href="#home" class="hover:text-indigo-600">Home</a></li>
-          <li><a href="#about" class="hover:text-indigo-600">About</a></li>
-          <li><a href="#services" class="hover:text-indigo-600">Services</a></li>
-          <li><a href="#projects" class="hover:text-indigo-600">Projects</a></li>
-          <li><a href="#contact" class="hover:text-indigo-600">Contact</a></li>
-        </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body class="font-sans bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <nav class=" bg-gradient-to-l from-gray-400 to-slate-700  text-white flex justify-between items-center px-8 py-4">
+    <div class="flex items-center space-x-2">
+      <div class="w-11 h-10">
+        <img src="/assets/seashell.png" alt="logo">
       </div>
-    </nav>
+      <span class="font-semibold">My Directory</span>
+    </div>
+    <ul class="hidden md:flex space-x-8 text-white font-medium">
+      <li><a href="#" class="hover:text-orange-300">Home</a></li>
+      <li><a href="#services" class="hover:text-orange-300">Expertise</a></li>
+      <li><a href="#about" class="hover:text-orange-300">Know Me</a></li>
+      <li><a href="#projects" class="hover:text-orange-300">Projects</a></li>
+      <li><a href="#" class="hover:text-orange-300">Insights</a></li>
+      <li><a href="#" class="hover:text-orange-300">Endorsements</a></li>
+    </ul>
+    <a href="#contact"
+      class="bg-white text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-orange-300 hover:text-black">
+      Let’s Connect
+    </a>
+  </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-center px-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Hi, I'm Prashant Singh</h1>
-      <p class="text-lg md:text-xl mb-6">Frontend Developer | Java Enthusiast</p>
-      <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-medium shadow-md hover:bg-gray-200 transition">Hire Me</a>
-    </section>
+  <!-- Hero Section -->
+  <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
+    <div class="max-w-lg">
+      <p class="text-gray-700">Hello There!</p>
+      <h1 class="text-4xl font-bold leading-snug">I’m <span class="text-slate-400">Prashant Singh</span>,<br> Full-Stack
+        Developer <br> Based in India.</h1>
+      <p class="mt-4 text-gray-600">I’m skilled in Java, Web Development, and building innovative projects with modern
+        tools and technologies.</p>
+      <div class="mt-6 flex space-x-4">
+        <a href="#"
+          class="bg-white border text-black px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">View
+          My Resume</a>
+        <a href="#"
+          class="border border-gray-700 px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">Hire
+          Me</a>
+      </div>
+    </div>
+    <div class="relative mt-10 md:mt-0 overflow rounded-full">
+      <img src="/assets/Screenshot_20250624_003841_Instagram~2[1].jpg" alt="Prashant"
+        class="rounded-full w-80 shadow-lg">
+      <span
+        class="absolute bottom-5 left-1/2 -translate-x-1/2  text-gray-600 px-3 py-1 rounded-full text-sm shadow-lg hover:bg-gray-200">Software
+        Developer</span>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-100">
-      <div class="max-w-6xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 items-center gap-10">
-        <img src="https://via.placeholder.com/400" alt="About Image" class="rounded-2xl shadow-lg hover:scale-105 transition" />
-        <div>
-          <h2 class="text-3xl font-bold mb-4 text-indigo-600">About Me</h2>
-          <p class="text-lg leading-relaxed text-gray-700">
-            I'm a passionate frontend developer skilled in HTML, CSS, JavaScript, and modern frameworks. I also have a strong foundation in Java and backend concepts. I love creating clean, responsive, and user-friendly web applications.
-          </p>
+  </section>
+
+  <!-- Banner Strip -->
+  <div
+    class="bg-yellow-500 text-black font-semibold py-3 flex justify-center space-x-6 overflow-x-auto bg-gradient-to-r from-gray-300 to-slate-700 text-white text-center px-6">
+    <span>App Design</span>
+    <span>Website Design</span>
+    <span>Dashboard</span>
+    <span>Wireframe</span>
+    <span>Prototype</span>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="py-16 bg-white">
+    <!-- <h2 class="text-3xl font-bold mb-8">Services <span class="text-yellow-500">I Provide</span></h2> -->
+    <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
+      <h2 class="text-4xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">
+        Expertise</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-code text-4xl text-slate-500 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+          <p class="text-gray-600">Responsive and interactive websites using HTML, CSS, JS, and React.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-laptop-code text-4xl text-slate-500 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Java Development</h3>
+          <p class="text-gray-600">Strong backend solutions and problem-solving using Core Java concepts.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-mobile-alt text-4xl text-slate-500 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
+          <p class="text-gray-600">Creative and modern UI designs with smooth user experiences.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-12">Services</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <i class="fas fa-code text-4xl text-indigo-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Web Development</h3>
-            <p class="text-gray-600">Responsive and interactive websites using HTML, CSS, JS, and React.</p>
+  <!-- About Me -->
+  <section id="about" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 items-center gap-10">
+      <img src="/assets/Screenshot_20250624_003841_Instagram~2[1].jpg" alt="About Image"
+        class="rounded-full w-80 shadow-lg transition-transform duration-500 hover:scale-130" />
+      <div>
+        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-gray-400 to-slate-900  bg-clip-text text-transparent">
+          About Me</h2>
+        <p class="text-lg leading-relaxed text-gray-700">
+          I'm a passionate frontend developer skilled in HTML, CSS, JavaScript, and modern frameworks. I also have a
+          strong foundation in Java and backend concepts. I love creating clean, responsive, and user-friendly web
+          applications.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="px-8 md:px-20 py-16">
+    <h2 class="text-3xl font-bold mb-8">Exploring the Tools <span class="text-slate-500">Behind My Designs</span></h2>
+    <div class="grid grid-cols-3 md:grid-cols-10 gap-6">
+      <img src="/assets/HTML5.png" class="w-16 mx-auto">
+      <img src="/assets/CSS3.png" class="w-16 mx-auto">
+      <img src="/assets/Tailwind CSS.png" class="w-16 mx-auto">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" class="w-16 mx-auto">
+      <img src="/assets/JavaScript.png" class="w-16 mx-auto">
+      <img src="/assets/React.png" class="w-16 mx-auto">
+      <img src="/assets/Java.png" class="w-16 mx-auto">
+      <img src="/assets/Visual Studio Code (VS Code).png" class="w-16 mx-auto">
+      <img src="/assets/GitHub.png" class="w-16 mx-auto">
+      <img src="/assets/Vite.js.png" class="w-16 mx-auto">
+    </div>
+  </section>
+
+  <!-- Projects -->
+
+  <section id="projects" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">Projects</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+          <img src="/assets/P1.png" alt="Project 1" class="w-full hover:scale-105 transition" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Jubilo</h3>
+            <p class="text-gray-600">Built with Tailwind CSS, React.js, JavaScript, NextJs and Firebase.</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <i class="fas fa-laptop-code text-4xl text-indigo-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Java Development</h3>
-            <p class="text-gray-600">Strong backend solutions and problem-solving using Core Java concepts.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+          <img src="/assets/P2.png" alt="Project 2" class="w-full hover:scale-105 transition" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">IOVS</h3>
+            <p class="text-gray-600">HTML, CSS, Tailwind CSS, JS and React.js</p>
           </div>
-          <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-            <i class="fas fa-mobile-alt text-4xl text-indigo-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
-            <p class="text-gray-600">Creative and modern UI designs with smooth user experiences.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+          <img src="/assets/P3.png" alt="Project 3" class="w-full hover:scale-105 transition" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Razorpay Clone</h3>
+            <p class="text-gray-600">UI design using HTML, CSS and JS.</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-gray-100">
-      <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-12">Projects</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-            <img src="https://via.placeholder.com/400" alt="Project 1" class="w-full hover:scale-105 transition" />
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Amazon Clone</h3>
-              <p class="text-gray-600">Built with HTML, CSS, and JavaScript.</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-            <img src="https://via.placeholder.com/400" alt="Project 2" class="w-full hover:scale-105 transition" />
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Portfolio Website</h3>
-              <p class="text-gray-600">Responsive personal portfolio with Tailwind CSS.</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-            <img src="https://via.placeholder.com/400" alt="Project 3" class="w-full hover:scale-105 transition" />
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Voting System</h3>
-              <p class="text-gray-600">UI design for an online voting system with real-time charts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
+  <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
       <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-        <h2 class="text-3xl font-bold text-indigo-600 mb-6">Contact Me</h2>
+        <h2 class="text-3xl font-bold  bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-6">Contact Me</h2>
         <p class="text-gray-700 mb-8">Let's connect! Feel free to reach out for collaborations or job opportunities.</p>
         <form class="grid gap-6">
-          <input type="text" placeholder="Your Name" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500" />
-          <input type="email" placeholder="Your Email" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500" />
-          <textarea rows="4" placeholder="Your Message" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"></textarea>
-          <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">Send Message</button>
+          <input type="text" placeholder="Your Name" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
+          <input type="email" placeholder="Your Email" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
+          <textarea rows="4" placeholder="Your Message" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300"></textarea>
+          <button class="bg-slate-300 text-black px-6 py-3 rounded-lg shadow hover:bg-gray-400 transition">Send Message</button>
         </form>
       </div>
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-900 text-gray-300 py-8 mt-16">
-      <div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-          <!-- Logo / Name -->
-          <div>
-            <h2 class="text-xl font-bold text-white">Prashant Singh</h2>
-            <p class="text-sm text-gray-400">Frontend Developer | Java Enthusiast</p>
-          </div>
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-8">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12">
 
-          <!-- Navigation Links -->
-          <div class="flex space-x-6">
-            <a href="#home" class="hover:text-white transition">Home</a>
-            <a href="#about" class="hover:text-white transition">About</a>
-            <a href="#services" class="hover:text-white transition">Services</a>
-            <a href="#projects" class="hover:text-white transition">Projects</a>
-            <a href="#contact" class="hover:text-white transition">Contact</a>
-          </div>
-
-          <!-- Social Links -->
-          <div class="flex space-x-5">
-            <a href="https://github.com/" target="_blank" class="hover:text-white transition">
-              <i class="fab fa-github text-2xl"></i>
-            </a>
-            <a href="https://linkedin.com/" target="_blank" class="hover:text-white transition">
-              <i class="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a href="mailto:yourmail@gmail.com" class="hover:text-white transition">
-              <i class="fas fa-envelope text-2xl"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="border-t border-gray-700 mt-6 pt-4 text-center">
-          <p class="text-sm text-gray-500">© 2025 Prashant Singh. All rights reserved.</p>
-        </div>
+    <!-- Logo / Name -->
+    <div class="w-13 h-11">
+        <img src="/assets/seashell.png" alt="logo">
       </div>
-    </footer>
+    <div class="flex flex-col items-center gap-6">
 
-  </body>
+      <!-- Social Links Center -->
+      <div class="flex justify-center space-x-6">
+        <a href="https://github.com/" target="_blank" class="hover:text-white transition">
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a href="https://linkedin.com/" target="_blank" class="hover:text-white transition">
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+        <a href="mailto:yourmail@gmail.com" class="hover:text-white transition">
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-700 mt-6 pt-4 text-center">
+      <p class="text-sm text-gray-500">© 2025 Prashant Singh. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+
 </html>
