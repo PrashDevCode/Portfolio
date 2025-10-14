@@ -42,14 +42,56 @@
         Developer <br> Based in India.</h1>
       <p class="mt-4 text-gray-600">I’m skilled in Java, Web Development, and building innovative projects with modern
         tools and technologies.</p>
+
+      <!-- Resume Section -->
+
       <div class="mt-6 flex space-x-4">
-        <a href="#"
+        <a href="/assets/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" target="_blank"
           class="bg-white border text-black px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">View
           My Resume</a>
-        <a href="#"
+        <!-- <a href="#contact"
           class="border border-gray-700 px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">Hire
-          Me</a>
+          Me</a> -->
+        <!-- Hire Me Button -->
+        <button id="hireMeBtn"
+          class="border border-gray-700 px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black transition">
+          Hire Me
+        </button>
       </div>
+    </div>
+
+    <!-- Contact Info Popup -->
+    <div id="contactPopup" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+      <div class="relative bg-white rounded-lg shadow-lg p-8 w-80 text-center">
+        <h3 class="text-2xl font-bold mb-4">Contact Me</h3>
+
+        <p class="text-gray-700 text-lg font-medium">📧 Email:</p>
+        <p class="text-blue-600 font-semibold mb-4">prashantsingh4688@gmail.com</p>
+
+        <p class="text-gray-700 text-lg font-medium">📞 Phone:</p>
+        <p class="text-blue-600 font-semibold mb-6">+91 94307 43691</p>
+
+        <button id="closePopup" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Script for Popup -->
+    <script>
+      const hireBtn = document.getElementById('hireMeBtn');
+      const popup = document.getElementById('contactPopup');
+      const closePopup = document.getElementById('closePopup');
+
+      hireBtn.addEventListener('click', () => popup.classList.remove('hidden'));
+      closePopup.addEventListener('click', () => popup.classList.add('hidden'));
+
+      // Optional: close popup when clicking outside
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) popup.classList.add('hidden');
+      });
+    </script>
+
     </div>
     <div class="relative mt-10 md:mt-0 overflow rounded-full">
       <img src="/assets/Screenshot_20250624_003841_Instagram~2[1].jpg" alt="Prashant"
@@ -134,8 +176,10 @@
 
   <section id="projects" class="py-16 bg-gray-100">
     <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-      <h2 class="text-3xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">Projects</h2>
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">
+        Projects</h2>
       <div class="grid md:grid-cols-3 gap-8">
+        <a href="https://jubilo-services.vercel.app/" target="_blank" class="block">
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
           <img src="/assets/P1.png" alt="Project 1" class="w-full hover:scale-105 transition" />
           <div class="p-6">
@@ -143,13 +187,17 @@
             <p class="text-gray-600">Built with Tailwind CSS, React.js, JavaScript, NextJs and Firebase.</p>
           </div>
         </div>
+        </a>
+        <a href="https://indian-online-voting-system.vercel.app/" target="_blank" class="block">
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/assets/P2.png" alt="Project 2" class="w-full hover:scale-105 transition" />
+          <img src="/assets/IOVS.png" alt="Project 2" class="w-full hover:scale-105 transition" />
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">IOVS</h3>
             <p class="text-gray-600">HTML, CSS, Tailwind CSS, JS and React.js</p>
           </div>
         </div>
+        </a>
+        <a href="https://razorpay-web-clone.netlify.app/" target="_blank" class="block">
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
           <img src="/assets/P3.png" alt="Project 3" class="w-full hover:scale-105 transition" />
           <div class="p-6">
@@ -157,54 +205,60 @@
             <p class="text-gray-600">UI design using HTML, CSS and JS.</p>
           </div>
         </div>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-      <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-        <h2 class="text-3xl font-bold  bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-6">Contact Me</h2>
-        <p class="text-gray-700 mb-8">Let's connect! Feel free to reach out for collaborations or job opportunities.</p>
-        <form class="grid gap-6">
-          <input type="text" placeholder="Your Name" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
-          <input type="email" placeholder="Your Email" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
-          <textarea rows="4" placeholder="Your Message" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300"></textarea>
-          <button class="bg-slate-300 text-black px-6 py-3 rounded-lg shadow hover:bg-gray-400 transition">Send Message</button>
-        </form>
-      </div>
-    </section>
+  <section id="contact" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <h2 class="text-3xl font-bold  bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-6">
+        Contact Me</h2>
+      <p class="text-gray-700 mb-8">Let's connect! Feel free to reach out for collaborations or job opportunities.</p>
+      <form class="grid gap-6">
+        <input type="text" placeholder="Your Name"
+          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
+        <input type="email" placeholder="Your Email"
+          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
+        <textarea rows="4" placeholder="Your Message"
+          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300"></textarea>
+        <button class="bg-slate-300 text-black px-6 py-3 rounded-lg shadow hover:bg-gray-400 transition">Send
+          Message</button>
+      </form>
+    </div>
+  </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-gray-300 py-8 mt-8">
-  <div class="max-w-7xl mx-auto px-8 lg:px-12">
+  <!-- Footer Section -->
+  <footer class="bg-gray-800 text-gray-300 py-8 mt-8">
+    <div class="max-w-7xl mx-auto px-8 lg:px-12">
 
-    <!-- Logo / Name -->
-    <div class="w-13 h-11">
+      <!-- Logo / Name -->
+      <div class="w-13 h-11">
         <img src="/assets/seashell.png" alt="logo">
       </div>
-    <div class="flex flex-col items-center gap-6">
+      <div class="flex flex-col items-center gap-6">
 
-      <!-- Social Links Center -->
-      <div class="flex justify-center space-x-6">
-        <a href="https://github.com/" target="_blank" class="hover:text-white transition">
-          <i class="fab fa-github text-2xl"></i>
-        </a>
-        <a href="https://linkedin.com/" target="_blank" class="hover:text-white transition">
-          <i class="fab fa-linkedin text-2xl"></i>
-        </a>
-        <a href="mailto:yourmail@gmail.com" class="hover:text-white transition">
-          <i class="fas fa-envelope text-2xl"></i>
-        </a>
+        <!-- Social Links Center -->
+        <div class="flex justify-center space-x-6">
+          <a href="https://github.com/" target="_blank" class="hover:text-white transition">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+          <a href="https://linkedin.com/" target="_blank" class="hover:text-white transition">
+            <i class="fab fa-linkedin text-2xl"></i>
+          </a>
+          <a href="mailto:yourmail@gmail.com" class="hover:text-white transition">
+            <i class="fas fa-envelope text-2xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-gray-700 mt-6 pt-4 text-center">
+        <p class="text-sm text-gray-500">© 2025 Prashant Singh. All rights reserved.</p>
       </div>
     </div>
-
-    <!-- Divider -->
-    <div class="border-t border-gray-700 mt-6 pt-4 text-center">
-      <p class="text-sm text-gray-500">© 2025 Prashant Singh. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 
