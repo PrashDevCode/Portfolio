@@ -4,274 +4,721 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Prashant Kr. Singh — Full-Stack Software Engineer</title>
+
+  <!-- Modern Monochrome SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='5' y='5' width='90' height='90' rx='25' fill='%23000000'/><path d='M30 25H55C65 25 70 30 70 38C70 46 65 50 55 50H30V25Z' stroke='%23ffffff' stroke-width='8' stroke-linecap='round'/><path d='M30 50V75' stroke='%23ffffff' stroke-width='8' stroke-linecap='round'/><path d='M48 60L56 66L48 72' stroke='%23a1a1aa' stroke-width='6' stroke-linecap='round'/></svg>">
+
+  <!-- Tailwind CSS & Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Lenis Smooth Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000000;
+      color: #e4e4e7;
+      overflow-x: hidden;
+    }
+
+    .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .font-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Minimalist Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #52525b;
+    }
+
+    /* WebGL Canvas */
+    #webgl-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    }
+
+    /* Noise Texture Overlay */
+    .bg-noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Magnetic Physics */
+    .magnetic-btn {
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Smart Scroll Header */
+    #navbar-container {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      transition: all 0.3s ease;
+    }
+    #navbar-container.scrolled {
+      background: rgba(9, 9, 11, 0.85);
+      border-color: rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    /* Spotlight Glass Card */
+    .spotlight-card {
+      position: relative;
+      background: rgba(9, 9, 11, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.15s ease-out;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+    .spotlight-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Project List Interactive Hover */
+    .project-row {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: padding 0.4s ease, background 0.4s ease, transform 0.15s ease-out;
+    }
+    .project-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .project-title {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+      color: transparent;
+      transition: all 0.4s ease;
+    }
+    .project-row:hover .project-title {
+      -webkit-text-stroke: 0px rgba(255, 255, 255, 1);
+      color: #ffffff;
+    }
+
+    /* Continuous Marquee Animation */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marqueeScroll 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
 </head>
 
-<body class="font-sans bg-white text-gray-800">
+<body class="selection:bg-white selection:text-black">
 
-  <!-- Navbar -->
-  <nav class=" bg-gradient-to-l from-gray-400 to-slate-700  text-white flex justify-between items-center px-8 py-4">
-    <div class="flex items-center space-x-2">
-      <div class="w-11 h-10">
-        <img src="/assets/seashell.png" alt="logo">
-      </div>
-      <span class="font-semibold">My Directory</span>
+  <div class="bg-noise"></div>
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 w-full z-50">
+    <div id="navbar-container" class="px-8 py-6 flex justify-between items-center transition-all duration-300">
+      
+      <!-- Theme-Matching SVG Monogram Logo -->
+      <a href="#" class="group flex items-center space-x-3.5">
+        <div class="relative w-9 h-9 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" class="relative z-10">
+            <rect x="6" y="6" width="88" height="88" rx="22" fill="#09090b" stroke="#27272a" stroke-width="3" />
+            <path d="M30 28H55C65 28 70 33 70 41C70 49 65 54 55 54H30V28Z" fill="#ffffff" />
+            <path d="M30 54V74" stroke="#ffffff" stroke-width="8" stroke-linecap="square" />
+            <path d="M48 60L56 66L48 72" stroke="#a1a1aa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <div class="flex flex-col">
+          <span class="text-sm font-bold font-heading tracking-widest text-white uppercase">Prashant.</span>
+          <span id="logo-sub" class="text-[10px] font-code text-zinc-500 tracking-[0.2em] uppercase transition-all duration-300 mt-0.5">Software Eng</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex space-x-10 text-[11px] font-code tracking-[0.15em] uppercase text-zinc-400">
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="#tools" class="hover:text-white transition">Stack</a>
+        <a href="#projects" class="hover:text-white transition">Works</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+
+      <button id="toggleTerminalBtn" class="magnetic-btn px-6 py-2.5 rounded-full border border-zinc-700 bg-zinc-900 text-[11px] font-code text-white hover:bg-white hover:text-black transition-all duration-300">
+        [CLI Mode]
+      </button>
     </div>
-    <ul class="hidden md:flex space-x-8 text-white font-medium">
-      <li><a href="#" class="hover:text-orange-300">Home</a></li>
-      <li><a href="#services" class="hover:text-orange-300">Expertise</a></li>
-      <li><a href="#about" class="hover:text-orange-300">Know Me</a></li>
-      <li><a href="#projects" class="hover:text-orange-300">Projects</a></li>
-      <li><a href="#" class="hover:text-orange-300">Insights</a></li>
-      <li><a href="#" class="hover:text-orange-300">Endorsements</a></li>
-    </ul>
-    <a href="#contact"
-      class="bg-white text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-orange-300 hover:text-black">
-      Let’s Connect
-    </a>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
-    <div class="max-w-lg">
-      <p class="text-gray-700">Hello There!</p>
-      <h1 class="text-4xl font-bold leading-snug">I’m <span class="text-slate-400">Prashant Kr. Singh</span>,<br> Full-Stack
-        Developer <br> Based in India.</h1>
-      <p class="mt-4 text-gray-600">I’m skilled in Java, Web Development, and building innovative projects with modern
-        tools and technologies.</p>
+  <main class="relative z-10">
 
-      <!-- Resume Section -->
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center px-8 lg:px-24 pt-36 pb-12">
+      <div class="max-w-6xl space-y-10">
 
-      <div class="mt-6 flex space-x-4">
-        <a href="/assets/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" target="_blank"
-          class="bg-white border text-black px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">View
-          My Resume</a>
-        <!-- <a href="#contact"
-          class="border border-gray-700 px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black">Hire
-          Me</a> -->
-        <!-- Hire Me Button -->
-        <button id="hireMeBtn"
-          class="border border-gray-700 px-6 py-3 rounded-md font-medium hover:bg-slate-400 hover:text-black transition">
-          Hire Me
+        <h1 class="gsap-hero text-5xl sm:text-7xl lg:text-[110px] font-bold font-heading tracking-tighter leading-[0.9] text-white">
+          FULL-STACK <br />
+          <span class="text-zinc-600">SOFTWARE</span> ENGINEER.
+        </h1>
+
+        <div class="gsap-hero grid md:grid-cols-2 gap-12 pt-8 items-end border-t border-zinc-800">
+          <p class="text-zinc-400 text-lg leading-relaxed max-w-md font-light">
+            Full Stack Software Engineer skilled in engineering production-grade web applications using Java, TypeScript, React, and Node.js.
+          </p>
+
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/assets/resume.pdf" target="_blank" class="magnetic-btn px-8 py-4 rounded-full bg-white text-black font-bold text-xs font-code uppercase tracking-widest hover:bg-zinc-200 transition">
+              Download CV
+            </a>
+            <a href="#contact" class="magnetic-btn px-8 py-4 rounded-full border border-zinc-700 text-white font-bold text-xs font-code uppercase tracking-widest hover:bg-zinc-900 transition">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Continuous Marquee Banner -->
+    <section class="py-8 border-y border-zinc-900 overflow-hidden bg-black/40 backdrop-blur-md">
+      <div class="animate-marquee text-3xl lg:text-5xl font-extrabold font-heading uppercase text-zinc-600 whitespace-nowrap">
+        <span class="px-8">MERN STACK ARCHITECTURE</span> • 
+        <span class="px-8">JAVA ENTERPRISE SOLUTIONS</span> • 
+        <span class="px-8">SCALABLE RESTFUL APIs</span> • 
+        <span class="px-8">DATABASE OPTIMIZATION</span> • 
+        <span class="px-8">MICROSERVICES SYSTEM</span> • 
+        <span class="px-8">MERN STACK ARCHITECTURE</span> • 
+        <span class="px-8">JAVA ENTERPRISE SOLUTIONS</span> • 
+        <span class="px-8">SCALABLE RESTFUL APIs</span> • 
+        <span class="px-8">DATABASE OPTIMIZATION</span> • 
+        <span class="px-8">MICROSERVICES SYSTEM</span> •
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-8 lg:px-24 border-b border-zinc-900">
+      <div class="max-w-6xl mx-auto space-y-16">
+        <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
+          <h2 class="text-xs font-code text-zinc-500 tracking-[0.2em] uppercase">01 // About & Philosophy</h2>
+          <span class="text-sm font-code text-zinc-500">Engineering Profile</span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+          <div class="lg:col-span-7 space-y-6">
+            <h3 class="text-3xl lg:text-4xl font-bold font-heading text-white leading-snug">
+              Designing secure, highly available architectures utilizing MVC/microservices patterns.
+            </h3>
+            <p class="text-zinc-400 text-base leading-relaxed font-light">
+              Full Stack Software Engineer skilled in engineering production-grade web applications using Java, TypeScript, React, and Node.js. Expert at integrating AI-driven development methodologies to rapidly deliver scalable features from concept to deployment.
+            </p>
+
+            <div class="grid grid-cols-3 gap-6 pt-6 border-t border-zinc-800">
+              <div>
+                <span class="block text-3xl font-bold font-heading text-white">8.1</span>
+                <span class="text-xs font-code text-zinc-500 uppercase">B.Tech CGPA</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-bold font-heading text-zinc-300">CSA</span>
+                <span class="text-xs font-code text-zinc-500 uppercase">ServiceNow Certified</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-bold font-heading text-zinc-400">MERN</span>
+                <span class="text-xs font-code text-zinc-500 uppercase">+ Java Stack</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 spotlight-card p-8 space-y-6">
+            <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+              <span class="text-xs font-code text-zinc-400">// CORE CONCEPTS</span>
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+
+            <ul class="space-y-4 text-sm text-zinc-300 font-code font-light">
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-zinc-500 mt-1"></i>
+                <span>JWT Authentication & API Security</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-zinc-500 mt-1"></i>
+                <span>OAuth 2.0 & CORS Protocols</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-zinc-500 mt-1"></i>
+                <span>Microservices & MVC Architecture</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fas fa-check text-zinc-500 mt-1"></i>
+                <span>Object-Oriented Programming (OOP)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industry Experience Section -->
+    <section id="experience" class="py-32 px-8 lg:px-24 border-b border-zinc-900 bg-zinc-950/20">
+      <div class="max-w-6xl mx-auto space-y-20">
+        <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
+          <h2 class="text-xs font-code text-zinc-500 tracking-[0.2em] uppercase">02 // Experience</h2>
+        </div>
+
+        <div class="space-y-8">
+          <!-- VinraTech -->
+          <div class="spotlight-card p-10 lg:p-12">
+            <div class="flex flex-col md:flex-row justify-between md:items-start gap-4 mb-8">
+              <div>
+                <h3 class="text-3xl font-bold font-heading text-white">Software Developer</h3>
+                <p class="text-zinc-400 font-code text-sm mt-2">VinraTech <span class="text-zinc-600">— Remote</span></p>
+              </div>
+              <span class="px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900 font-code text-xs text-white">
+                Mar 2026 – Present
+              </span>
+            </div>
+            <ul class="space-y-4 text-zinc-400 text-sm leading-relaxed font-light mb-8 max-w-3xl">
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Engineered scalable web apps using React, Node.js, and TypeScript with modular backend architecture.</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Built secure REST APIs and optimized MongoDB/MySQL queries to enhance server response times.</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Implemented JWT authentication, role-based workflows, and collaborated via Agile/Git code reviews.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sheryians -->
+          <div class="spotlight-card p-10 lg:p-12">
+            <div class="flex flex-col md:flex-row justify-between md:items-start gap-4 mb-8">
+              <div>
+                <h3 class="text-3xl font-bold font-heading text-white">Full Stack Developer</h3>
+                <p class="text-zinc-400 font-code text-sm mt-2">Sheryians Pvt. Limited <span class="text-zinc-600">— Bhopal, India</span></p>
+              </div>
+              <span class="px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900 font-code text-xs text-zinc-400">
+                Dec 2025 – Mar 2026
+              </span>
+            </div>
+            <ul class="space-y-4 text-zinc-400 text-sm leading-relaxed font-light mb-8 max-w-3xl">
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Architected a live hiring platform using MCRS architecture serving active recruiters and candidates.</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Built async BullMQ + Redis pipeline to automate PDF certificates, AWS S3 uploads, and Brevo emails.</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="text-zinc-600 font-code mt-0.5">></span>
+                <span>Designed normalized MongoDB schemas and secure REST APIs with JWT, Joi, and Multer.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Matrix -->
+    <section id="tools" class="py-32 px-8 lg:px-24">
+      <div class="max-w-6xl mx-auto space-y-16">
+        <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
+          <h2 class="text-xs font-code text-zinc-500 tracking-[0.2em] uppercase">03 // Stack & Ecosystem</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Languages -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-code text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">Languages</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">Core programming languages</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Java.png" class="w-4 h-4 object-contain" alt="Java"> Java
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/JavaScript.png" class="w-4 h-4 object-contain" alt="JS"> JavaScript
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/TypeScript.png" class="w-4 h-4 object-contain" alt="TS"> TypeScript
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <i class="fab fa-python text-zinc-400"></i> Python
+              </span>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-desktop text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">Frontend</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">UI engineering & styling</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/React.png" class="w-4 h-4 object-contain" alt="React"> React.js
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/HTML5.png" class="w-4 h-4 object-contain" alt="HTML5"> HTML5
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/CSS3.png" class="w-4 h-4 object-contain" alt="CSS3"> CSS3
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Tailwind CSS.png" class="w-4 h-4 object-contain" alt="Tailwind"> Tailwind
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/bootstrap-brands-solid.png" class="w-4 h-4 object-contain" alt="Bootstrap"> Bootstrap
+              </span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-server text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">Backend & Arch.</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">Server logic & endpoints</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/nodejs.png" class="w-4 h-4 object-contain" alt="Node"> Node.js
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Express.png" class="w-4 h-4 object-contain" alt="Express"> Express.js
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                REST APIs
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                MVC & MCRS
+              </span>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-database text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">Databases</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">SQL & NoSQL Storage</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/MongoDB.png" class="w-4 h-4 object-contain" alt="MongoDB"> MongoDB
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/MySQL.png" class="w-4 h-4 object-contain" alt="MySQL"> MySQL
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Redis.png" class="w-4 h-4 object-contain" alt="Redis"> Redis
+              </span>
+            </div>
+          </div>
+
+          <!-- Cloud & Tools -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-cloud text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">Cloud & Tools</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">DevOps & Cloud services</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/AWS.png" class="w-4 h-4 object-contain" alt="AWS"> AWS S3
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                Docker
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                CI/CD
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Git.png" class="w-4 h-4 object-contain" alt="Git"> Git/GitHub
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Postman.png" class="w-4 h-4 object-contain" alt="Postman"> Postman
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                <img src="/assets/Vercel.png" class="w-4 h-4 object-contain" alt="Vercel"> Vercel / Netlify
+              </span>
+            </div>
+          </div>
+
+          <!-- AI & Libraries -->
+          <div class="spotlight-card p-8 flex flex-col justify-between">
+            <div>
+              <i class="fas fa-brain text-2xl text-zinc-500 mb-4 block"></i>
+              <h3 class="text-xl font-bold font-heading text-white">AI & Libraries</h3>
+              <p class="text-zinc-500 text-xs mt-2 font-light">AI Prompting & Node Packages</p>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                BullMQ
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                Multer
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                Brevo
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                bcrypt.js
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white font-code text-xs">
+                OpenAI API
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Works -->
+    <section id="projects" class="py-32 px-8 lg:px-24 border-y border-zinc-900">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <div class="flex justify-between items-end border-b border-zinc-800 pb-8">
+          <h2 class="text-xs font-code text-zinc-500 tracking-[0.2em] uppercase">04 // Featured Projects</h2>
+        </div>
+
+        <div class="flex flex-col border-t border-zinc-800">
+          
+          <!-- Project 1: Jubilo -->
+          <div class="project-row border-b border-zinc-800 py-10 lg:py-16 relative overflow-hidden group">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+              <div class="flex items-center gap-8">
+                <span class="text-sm font-code text-zinc-600 font-bold group-hover:text-white transition">01</span>
+                <div>
+                  <h3 class="project-title text-3xl lg:text-5xl font-extrabold font-heading tracking-tighter">Jubilo Event Platform</h3>
+                  <p class="text-zinc-400 text-xs font-code mt-2">Next.js 14, Tailwind CSS, Cashfree Payments, EmailJS</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-white text-xs font-code text-white transition flex items-center gap-2">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://jubilo-services.vercel.app/" target="_blank" class="px-4 py-2 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-code font-bold transition flex items-center gap-2">
+                  <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: SkyBlog -->
+          <div class="project-row border-b border-zinc-800 py-10 lg:py-16 relative overflow-hidden group">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+              <div class="flex items-center gap-8">
+                <span class="text-sm font-code text-zinc-600 font-bold group-hover:text-white transition">02</span>
+                <div>
+                  <h3 class="project-title text-3xl lg:text-5xl font-extrabold font-heading tracking-tighter">SkyBlog CMS Platform</h3>
+                  <p class="text-zinc-400 text-xs font-code mt-2">Node.js, Express.js, JWT, Multer, Brevo SMTP</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-white text-xs font-code text-white transition flex items-center gap-2">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-code font-bold transition flex items-center gap-2">
+                  <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Contact App -->
+          <div class="project-row border-b border-zinc-800 py-10 lg:py-16 relative overflow-hidden group">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+              <div class="flex items-center gap-8">
+                <span class="text-sm font-code text-zinc-600 font-bold group-hover:text-white transition">03</span>
+                <div>
+                  <h3 class="project-title text-3xl lg:text-5xl font-extrabold font-heading tracking-tighter">Contact App REST System</h3>
+                  <p class="text-zinc-400 text-xs font-code mt-2">Node.js, Express.js, MongoDB, Mongoose ODM</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-white text-xs font-code text-white transition flex items-center gap-2">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-code font-bold transition flex items-center gap-2">
+                  <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: IOVS -->
+          <div class="project-row border-b border-zinc-800 py-10 lg:py-16 relative overflow-hidden group">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+              <div class="flex items-center gap-8">
+                <span class="text-sm font-code text-zinc-600 font-bold group-hover:text-white transition">04</span>
+                <div>
+                  <h3 class="project-title text-3xl lg:text-5xl font-extrabold font-heading tracking-tighter">IOVS Online Voting</h3>
+                  <p class="text-zinc-400 text-xs font-code mt-2">MERN Stack, Tailwind CSS, React.js</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a href="https://github.com/prashant-singh05" target="_blank" class="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-white text-xs font-code text-white transition flex items-center gap-2">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://indian-online-voting-system.vercel.app/" target="_blank" class="px-4 py-2 rounded-lg bg-white text-black hover:bg-zinc-200 text-xs font-code font-bold transition flex items-center gap-2">
+                  <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-8 lg:px-24">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
+        <div class="space-y-10">
+          <h2 class="text-5xl lg:text-7xl font-extrabold font-heading text-white tracking-tighter leading-none">
+            Let's build <br/><span class="text-zinc-600">the future.</span>
+          </h2>
+          <p class="text-zinc-400 text-lg font-light max-w-md">
+            Currently available for full-stack software engineering roles and technical collaborations.
+          </p>
+
+          <div class="space-y-4 pt-8">
+            <div class="border-b border-zinc-800 pb-4 flex justify-between items-center group cursor-pointer" onclick="copyToClipboard('prashantsingh4688@gmail.com', this)">
+              <div>
+                <span class="block text-xs font-code text-zinc-600 uppercase tracking-widest mb-1">Email</span>
+                <span class="text-lg font-heading text-white">prashantsingh4688@gmail.com</span>
+              </div>
+              <button class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-white hover:text-black font-code text-xs text-white transition">
+                Copy
+              </button>
+            </div>
+            
+            <div class="border-b border-zinc-800 pb-4 flex justify-between items-center group cursor-pointer" onclick="copyToClipboard('+919430743691', this)">
+              <div>
+                <span class="block text-xs font-code text-zinc-600 uppercase tracking-widest mb-1">Phone</span>
+                <span class="text-lg font-heading text-white">+91 94307 43691</span>
+              </div>
+              <button class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-white hover:text-black font-code text-xs text-white transition">
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <form class="spotlight-card p-10 lg:p-12 space-y-6 flex flex-col justify-between">
+          <div class="space-y-6">
+            <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-zinc-800 text-white placeholder-zinc-600 py-4 font-code text-sm focus:outline-none focus:border-white transition" />
+            <input type="email" placeholder="Email" class="w-full bg-transparent border-b border-zinc-800 text-white placeholder-zinc-600 py-4 font-code text-sm focus:outline-none focus:border-white transition" />
+            <textarea rows="4" placeholder="Message details..." class="w-full bg-transparent border-b border-zinc-800 text-white placeholder-zinc-600 py-4 font-code text-sm focus:outline-none focus:border-white transition resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full py-5 bg-white text-black font-bold font-code text-xs uppercase tracking-widest hover:bg-zinc-200 transition mt-8">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-8 lg:px-24 border-t border-zinc-900 bg-black relative z-20">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-zinc-600 font-code uppercase tracking-widest">
+        <p>© 2026 Prashant Kr. Singh. All rights reserved.</p>
+        <div class="flex space-x-8">
+          <a href="https://github.com/prashant-singh05" target="_blank" class="hover:text-white transition">GitHub</a>
+          <a href="https://linkedin.com/in/prashant-singh05" target="_blank" class="hover:text-white transition">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CLI Drawer -->
+  <div id="terminalDrawer" class="fixed bottom-0 left-0 w-full z-50 bg-[#050505]/95 border-t border-zinc-800 backdrop-blur-2xl transition-all duration-500 transform translate-y-full">
+    <div class="max-w-5xl mx-auto p-6 font-code text-sm">
+      <div class="flex justify-between items-center border-b border-zinc-800 pb-3 mb-4">
+        <span class="text-[11px] text-zinc-400 flex items-center gap-2 tracking-widest uppercase">
+          <span class="w-2 h-2 rounded-full bg-white"></span> SYS_CLI_v2.0
+        </span>
+        <button id="closeTerminalBtn" class="text-zinc-600 hover:text-white text-[11px] uppercase tracking-widest">
+          [Close]
         </button>
       </div>
-    </div>
-
-    <!-- Contact Info Popup -->
-    <div id="contactPopup" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-      <div class="relative bg-white rounded-lg shadow-lg p-8 w-80 text-center">
-        <h3 class="text-2xl font-bold mb-4">Contact Me</h3>
-
-        <p class="text-gray-700 text-lg font-medium">Email:</p>
-        <p class="text-blue-600 font-semibold mb-4">prashantsingh4688@gmail.com</p>
-
-        <p class="text-gray-700 text-lg font-medium">Phone:</p>
-        <p class="text-blue-600 font-semibold mb-6">+91 94307 43691</p>
-
-        <button id="closePopup" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
-          Close
-        </button>
+      <div id="terminalOutput" class="h-48 overflow-y-auto space-y-2 text-zinc-300 pr-2 font-light">
+        <p class="text-zinc-500">Type <span class="text-white font-bold">'help'</span> for commands or try <span class="text-amber-400 font-bold">'hire'</span>. (Press <span class="text-white font-bold">Tab</span> to auto-complete)</p>
+      </div>
+      <div class="flex items-center gap-3 pt-4 mt-2">
+        <span class="text-zinc-600 font-bold">></span>
+        <input type="text" id="terminalInput" class="w-full bg-transparent text-white focus:outline-none font-code text-sm" />
       </div>
     </div>
-
-    <!-- Script for Popup -->
-    <script>
-      const hireBtn = document.getElementById('hireMeBtn');
-      const popup = document.getElementById('contactPopup');
-      const closePopup = document.getElementById('closePopup');
-
-      hireBtn.addEventListener('click', () => popup.classList.remove('hidden'));
-      closePopup.addEventListener('click', () => popup.classList.add('hidden'));
-
-      // Optional: close popup when clicking outside
-      popup.addEventListener('click', (e) => {
-        if (e.target === popup) popup.classList.add('hidden');
-      });
-    </script>
-
-    </div>
-    <div class="relative mt-10 md:mt-0 overflow rounded-full">
-      <img src="/assets/Screenshot_20250624_003841_Instagram~2[1].jpg" alt="Prashant"
-        class="rounded-full w-80 shadow-lg">
-      <span
-        class="absolute bottom-5 left-1/2 -translate-x-1/2  text-gray-600 px-3 py-1 rounded-full text-sm shadow-lg hover:bg-gray-200">Software
-        Developer</span>
-
-  </section>
-
-  <!-- Banner Strip -->
-  <div
-    class="bg-yellow-500 text-black font-semibold py-3 flex justify-center space-x-6 overflow-x-auto bg-gradient-to-r from-gray-300 to-slate-700 text-white text-center px-6">
-    <span>App Design</span>
-    <span>Website Design</span>
-    <span>Dashboard</span>
-    <span>Wireframe</span>
-    <span>Prototype</span>
   </div>
 
-  <!-- Services -->
-  <section id="services" class="py-16 bg-white">
-    <!-- <h2 class="text-3xl font-bold mb-8">Services <span class="text-yellow-500">I Provide</span></h2> -->
-    <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-      <h2 class="text-4xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">
-        Expertise</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-code text-4xl text-slate-500 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Web Development</h3>
-          <p class="text-gray-600">Responsive and interactive websites using HTML, CSS, JS, TS, React.js, Next.js, Nodejs, Express.js and MongoDB</p>
-        </div>
-        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-laptop-code text-4xl text-slate-500 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Java Development</h3>
-          <p class="text-gray-600">Strong backend solutions and problem-solving using Core Java concepts.</p>
-        </div>
-        <div class="p-6 bg-gray-50 rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-mobile-alt text-4xl text-slate-500 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
-          <p class="text-gray-600">Creative and modern UI designs with smooth user experiences.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Me -->
-  <section id="about" class="py-16 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 items-center gap-10">
-      <img src="/assets/Screenshot_20250624_003841_Instagram~2[1].jpg" alt="About Image"
-        class="rounded-full w-80 shadow-lg transition-transform duration-500 hover:scale-130" />
-      <div>
-        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-gray-400 to-slate-900  bg-clip-text text-transparent">
-          About Me</h2>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Results-driven Full Stack Developer with hands-on production experience building and scaling real-world web
-platforms. Proficient in RESTful API design, backend architecture, and frontend development using the MERN
-stack with a strong focus on performance, security, and clean code.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tools -->
-  <section class="px-8 md:px-20 py-16">
-    <h2 class="text-3xl font-bold mb-8">Exploring the Tools <span class="text-slate-500">Behind My Designs</span></h2>
-    <div class="grid grid-cols-3 md:grid-cols-10 gap-6">
-      <img src="/assets/HTML5.png" class="w-16 mx-auto">
-      <img src="/assets/CSS3.png" class="w-16 mx-auto">
-      <img src="/assets/Tailwind CSS.png" class="w-16 mx-auto">
-      <img src="/assets/bootstrap-brands-solid.png" class="w-16 mx-auto">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" class="w-16 mx-auto">
-      <img src="/assets/JavaScript.png" class="w-16 mx-auto">
-      <img src="/assets/React.png" class="w-16 mx-auto">
-      <img src="/assets/Java.png" class="w-16 mx-auto">
-      <img src="/assets/Visual Studio Code (VS Code).png" class="w-16 mx-auto">
-      <img src="/assets/Git.png" class="w-16 mx-auto">
-      <img src="/assets/GitHub.png" class="w-16 mx-auto">
-      <img src="/assets/Vite.js.png" class="w-16 mx-auto">
-      <img src="/assets/AWS.png" class="w-16 mx-auto">
-      <img src="/assets/Express.png" class="w-16 mx-auto">
-      <img src="/assets/MongoDB.png" class="w-16 mx-auto">
-      <img src="/assets/nextjs-icon-svgrepo-com.png" class="w-16 mx-auto">
-      <img src="/assets/nodejs.png" class="w-16 mx-auto">
-      <img src="/assets/TypeScript.png" class="w-16 mx-auto">
-      <img src="/assets/Vercel.png" class="w-16 mx-auto">
-      <img src="/assets/MySQL.png" class="w-16 mx-auto">
-      <img src="/assets/Postman.png" class="w-16 mx-auto">
-      <img src="/assets/Redis.png" class="w-16 mx-auto">
-    </div>
-  </section>
-
-  <!-- Projects -->
-
-  <section id="projects" class="py-16 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-6 lg:px-12 text-center">
-      <h2 class="text-3xl font-bold bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-12">
-        Projects</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="https://jubilo-services.vercel.app/" target="_blank" class="block">
-        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/assets/P1.png" alt="Project 1" class="w-full hover:scale-105 transition" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Jubilo</h3>
-            <p class="text-gray-600">Built with Tailwind CSS, React.js, JavaScript, NextJs and Firebase.</p>
-          </div>
-        </div>
-        </a>
-        <a href="https://indian-online-voting-system.vercel.app/" target="_blank" class="block">
-        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/assets/IOVS.png" alt="Project 2" class="w-full hover:scale-105 transition" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">IOVS</h3>
-            <p class="text-gray-600">HTML, CSS, Tailwind CSS, JS and React.js</p>
-          </div>
-        </div>
-        </a>
-        <a href="https://razorpay-web-clone.netlify.app/" target="_blank" class="block">
-        <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-          <img src="/assets/P3.png" alt="Project 3" class="w-full hover:scale-105 transition" />
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Razorpay Clone</h3>
-            <p class="text-gray-600">UI design using HTML, CSS and JS.</p>
-          </div>
-        </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-      <h2 class="text-3xl font-bold  bg-gradient-to-r from-gray-200 to-slate-800  bg-clip-text text-transparent mb-6">
-        Contact Me</h2>
-      <p class="text-gray-700 mb-8">Let's connect! Feel free to reach out for collaborations or job opportunities.</p>
-      <form class="grid gap-6">
-        <input type="text" placeholder="Your Name"
-          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
-        <input type="email" placeholder="Your Email"
-          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300" />
-        <textarea rows="4" placeholder="Your Message"
-          class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-300"></textarea>
-        <button class="bg-slate-300 text-black px-6 py-3 rounded-lg shadow hover:bg-gray-400 transition">Send
-          Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="bg-gray-800 text-gray-300 py-8 mt-8">
-    <div class="max-w-7xl mx-auto px-8 lg:px-12">
-
-      <!-- Logo / Name -->
-      <div class="w-13 h-11">
-        <img src="/assets/seashell.png" alt="logo">
-      </div>
-      <div class="flex flex-col items-center gap-6">
-
-        <!-- Social Links Center -->
-        <div class="flex justify-center space-x-6">
-          <a href="https://github.com/" target="_blank" class="hover:text-white transition">
-            <i class="fab fa-github text-2xl"></i>
-          </a>
-          <a href="https://linkedin.com/" target="_blank" class="hover:text-white transition">
-            <i class="fab fa-linkedin text-2xl"></i>
-          </a>
-          <a href="mailto:yourmail@gmail.com" class="hover:text-white transition">
-            <i class="fas fa-envelope text-2xl"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <div class="border-t border-gray-700 mt-6 pt-4 text-center">
-        <p class="text-sm text-gray-500">© 2026 Prashant Singh. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
+  <!-- External JavaScript Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
