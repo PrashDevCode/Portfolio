@@ -226,7 +226,7 @@ if (terminalInput) {
           lenis.scrollTo('#tools');
           break;
         case 'projects':
-          response = 'Jubilo Event Platform, SkyBlog, Contact App, IOVS Voting System.';
+          response = 'Jubilo Event Platform, SkyBlog, Contact App, Skynexes Platform.';
           lenis.scrollTo('#projects');
           break;
         case 'contact':
