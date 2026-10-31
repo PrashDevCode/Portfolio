@@ -38,7 +38,7 @@ export default function ExperienceSection() {
                 </span>
               </div>
 
-              <ul className="space-y-4 text-zinc-400 text-sm leading-relaxed font-light max-w-3xl">
+              <ul className="space-y-4 text-zinc-400 text-sm leading-relaxed font-light mb-6 max-w-3xl">
                 {exp.bullets.map((bullet, bulletIdx) => (
                   <li key={bulletIdx} className="flex items-start gap-3">
                     <span className="text-zinc-600 font-code mt-0.5 select-none">{">"}</span>
@@ -46,6 +46,22 @@ export default function ExperienceSection() {
                   </li>
                 ))}
               </ul>
+
+              {exp.techStack && (
+                <div className="pt-4 border-t border-zinc-900/80 flex flex-wrap items-center gap-2">
+                  <span className="text-[10px] font-code text-zinc-500 uppercase tracking-widest mr-2">
+                    Tech Stack:
+                  </span>
+                  {exp.techStack.map((tech, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-[11px] font-code text-zinc-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
             </SpotlightCard>
           ))}
         </div>

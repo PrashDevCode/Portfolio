@@ -1,5 +1,14 @@
 [
   {
+    "id": "msg_1793378568523_88ywz",
+    "name": "Supabase Test",
+    "email": "prashant.test@supabase.io",
+    "message": "Hello from live Supabase cloud PostgreSQL connection test!",
+    "createdAt": "2026-10-30T16:42:48.520Z",
+    "status": "unread",
+    "source": "local"
+  },
+  {
     "id": "msg_1793307832186_c0cq5",
     "name": "Sarah Jenkins",
     "email": "sarah.jenkins@techrecruiter.com",

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
+import GitHubRadar from "@/components/sections/GitHubRadar";
 import MarqueeBanner from "@/components/sections/MarqueeBanner";
 import AboutSection from "@/components/sections/AboutSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
@@ -26,6 +27,7 @@ export default function Home() {
       {/* Main Content Sections */}
       <main className="relative z-10 flex-1">
         <HeroSection />
+        <GitHubRadar />
         <MarqueeBanner />
         <AboutSection />
         <ExperienceSection />

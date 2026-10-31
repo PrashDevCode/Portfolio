@@ -16,6 +16,7 @@ export interface ExperienceItem {
   period: string;
   location: string;
   bullets: string[];
+  techStack?: string[];
 }
 
 export interface SkillCategory {
@@ -32,51 +33,52 @@ export const PORTFOLIO_DATA = {
   personal: {
     name: "Prashant Kr. Singh",
     shortName: "Prashant.",
-    title: "Full-Stack Software Engineer",
-    headline: "FULL-STACK SOFTWARE ENGINEER.",
+    title: "Software Developer & Full-Stack Engineer",
+    headline: "SOFTWARE DEVELOPER & FULL-STACK ENGINEER.",
     subheadline:
-      "Full Stack Software Engineer skilled in engineering production-grade web applications using Java, TypeScript, React, and Node.js. Expert at integrating AI-driven development methodologies to rapidly deliver scalable features from concept to deployment.",
-    email: "prashantsingh4688@gmail.com",
+      "Software Developer skilled in Angular, React.js, Node.js, and TypeScript, with hands-on experience in full-stack development, scalable web architectures, secure REST APIs, and parametric CAD UI engineering.",
+    email: "singhprashant0508@gmail.com",
     phone: "+91 94307 43691",
     github: "https://github.com/PrashDevCode",
     linkedin: "https://www.linkedin.com/in/prashant-singh05/",
     resumeUrl: "/assets/resume.pdf",
     location: "India",
-    status: "Available for Full-time Roles & Technical Collaborations",
+    status: "Available for Software Engineering Roles & Collaborations",
   },
   metrics: [
     { label: "B.Tech CGPA", value: "8.1" },
     { label: "ServiceNow Certified", value: "CSA" },
-    { label: "+ Java Stack", value: "MERN" },
+    { label: "Engineering Stack", value: "Full Stack" },
   ],
   coreConcepts: [
+    "2D AABB Intersection & Spatial Algorithms",
     "JWT Authentication & API Security",
-    "OAuth 2.0 & CORS Protocols",
-    "Microservices & MVC Architecture",
-    "Object-Oriented Programming (OOP)",
+    "Microservices, MVC & MCRS Architecture",
     "Asynchronous Task Pipelines (BullMQ/Redis)",
-    "Database Normalization & Query Tuning",
+    "Object-Oriented Programming (OOP) & Clean Code",
+    "Manual & Functional Web QA / E2E Validation",
   ],
   tickerItems: [
-    "MERN STACK ARCHITECTURE",
-    "JAVA ENTERPRISE SOLUTIONS",
+    "PARAMETRIC CAD ENGINES",
+    "ANGULAR & REACT.JS",
     "SCALABLE RESTFUL APIs",
-    "DATABASE OPTIMIZATION",
-    "MICROSERVICES SYSTEM",
+    "ASYNC BULLMQ & REDIS",
+    "MICROSERVICES & MCRS",
     "FULL-STACK NEXT.JS",
-    "AI-POWERED WORKFLOWS",
+    "TYPESCRIPT & NODE.JS",
   ],
   experiences: [
     {
-      company: "VinraTech",
+      company: "Aagento.AI",
       role: "Software Developer",
-      period: "Mar 2026 – Present",
-      location: "Remote",
+      period: "Sep 2026 – Present",
+      location: "Noida, India",
       bullets: [
-        "Engineered scalable web apps using React, Node.js, and TypeScript with modular backend architecture.",
-        "Built secure REST APIs and optimized MongoDB/MySQL queries to enhance server response times.",
-        "Implemented JWT authentication, role-based workflows, and collaborated via Agile/Git code reviews.",
+        "Engineered a high-performance Smart Text Intelligence Layer for parametric bridge engineering CAD modules using Angular and TypeScript.",
+        "Developed advanced automated collision resolution algorithms including true 2D AABB intersection, multi-pass cascading vertical pushdown, and structural obstacle avoidance.",
+        "Enforced strict structural geometry immutability and continuous engineering line integrity, eliminating unwanted line-splitting and dimension injections on canvas.",
       ],
+      techStack: ["TypeScript", "Angular", "HTML5 Canvas API", "AABB Algorithms", "Git"],
     },
     {
       company: "Sheryians Pvt. Limited",
@@ -84,10 +86,11 @@ export const PORTFOLIO_DATA = {
       period: "Dec 2025 – Mar 2026",
       location: "Bhopal, India",
       bullets: [
-        "Architected a live hiring platform using MCRS architecture serving active recruiters and candidates.",
-        "Built async BullMQ + Redis pipeline to automate PDF certificates, AWS S3 uploads, and Brevo emails.",
-        "Designed normalized MongoDB schemas and secure REST APIs with JWT, Joi, and Multer.",
+        "Built an asynchronous certificate-delivery pipeline using BullMQ and Redis to generate PDFs, upload to AWS S3, and send emails via Brevo with exponential backoff.",
+        "Designed normalized MongoDB schemas using Mongoose ODM with optimized query performance, ensuring consistent and scalable data modeling across production environments.",
+        "Built modular REST APIs using Node.js and Express.js with JWT authentication, Joi for input validation, and Multer for file handling.",
       ],
+      techStack: ["Node.js", "Express.js", "Next.js", "MongoDB", "BullMQ", "Redis", "AWS S3", "Brevo", "REST APIs"],
     },
   ] as ExperienceItem[],
   skillCategories: [
@@ -96,28 +99,28 @@ export const PORTFOLIO_DATA = {
       description: "Core programming languages",
       icon: "Code2",
       skills: [
-        { name: "Java", iconSrc: "/assets/Java.png" },
-        { name: "JavaScript", iconSrc: "/assets/JavaScript.png" },
         { name: "TypeScript", iconSrc: "/assets/TypeScript.png" },
+        { name: "JavaScript", iconSrc: "/assets/JavaScript.png" },
+        { name: "Java", iconSrc: "/assets/Java.png" },
         { name: "Python" },
       ],
     },
     {
-      title: "Frontend",
-      description: "UI engineering & styling",
+      title: "Frontend & UI",
+      description: "UI engineering & CAD layers",
       icon: "Monitor",
       skills: [
+        { name: "Angular" },
         { name: "React.js", iconSrc: "/assets/React.png" },
         { name: "Next.js", iconSrc: "/assets/nextjs-icon-svgrepo-com.png" },
-        { name: "HTML5", iconSrc: "/assets/HTML5.png" },
-        { name: "CSS3", iconSrc: "/assets/CSS3.png" },
+        { name: "HTML5 Canvas", iconSrc: "/assets/HTML5.png" },
         { name: "Tailwind CSS", iconSrc: "/assets/Tailwind CSS.png" },
         { name: "Bootstrap", iconSrc: "/assets/bootstrap-brands-solid.png" },
       ],
     },
     {
       title: "Backend & Arch.",
-      description: "Server logic & endpoints",
+      description: "Server logic & distributed patterns",
       icon: "Server",
       skills: [
         { name: "Node.js", iconSrc: "/assets/nodejs.png" },
@@ -128,8 +131,8 @@ export const PORTFOLIO_DATA = {
       ],
     },
     {
-      title: "Databases",
-      description: "SQL & NoSQL Storage",
+      title: "Databases & Storage",
+      description: "SQL, NoSQL & Cache",
       icon: "Database",
       skills: [
         { name: "MongoDB", iconSrc: "/assets/MongoDB.png" },
@@ -139,8 +142,8 @@ export const PORTFOLIO_DATA = {
       ],
     },
     {
-      title: "Cloud & Tools",
-      description: "DevOps & Cloud services",
+      title: "Cloud & DevOps",
+      description: "Deployment & toolchain",
       icon: "Cloud",
       skills: [
         { name: "AWS S3", iconSrc: "/assets/AWS.png" },
@@ -148,23 +151,38 @@ export const PORTFOLIO_DATA = {
         { name: "CI/CD" },
         { name: "Git/GitHub", iconSrc: "/assets/Git.png" },
         { name: "Postman", iconSrc: "/assets/Postman.png" },
-        { name: "Vercel / Netlify", iconSrc: "/assets/Vercel.png" },
+        { name: "Vercel / Render", iconSrc: "/assets/Vercel.png" },
       ],
     },
     {
-      title: "AI & Libraries",
-      description: "AI Prompting & Node Packages",
+      title: "Testing, QA & Libraries",
+      description: "QA verification & task queues",
       icon: "Cpu",
       skills: [
+        { name: "Manual & E2E Testing" },
         { name: "BullMQ" },
         { name: "Multer" },
         { name: "Brevo" },
+        { name: "Joi" },
         { name: "bcrypt.js" },
-        { name: "OpenAI API" },
-        { name: "Gemini API" },
       ],
     },
   ] as SkillCategory[],
+  education: [
+    {
+      degree: "Bachelor of Technology — Computer Science & Engineering",
+      institution: "Technocrats Institute of Technology, Bhopal, M.P.",
+      period: "2022 – 2026",
+      score: "CGPA: 8.1 / 10.0",
+    },
+    {
+      degree: "Higher Secondary Education (+2)",
+      institution: "Rajkiya +2 High School, Arrah, Bihar",
+      period: "2020 – 2022",
+      score: "First Division",
+    },
+  ],
+  // [IMPORTANT] Preserving existing extensive project showcase intact as requested
   projects: [
     {
       id: "jubilo",
@@ -236,4 +254,3 @@ export const PORTFOLIO_DATA = {
     },
   ] as ProjectItem[],
 };
-

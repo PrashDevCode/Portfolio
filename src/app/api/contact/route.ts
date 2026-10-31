@@ -1,9 +1,24 @@
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validations";
 import { saveMessage } from "@/lib/db";
+import { sendContactNotificationEmails } from "@/lib/mailer";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 export async function POST(req: Request) {
   try {
+    // 1. Rate Limiting Protection (Anti-Spam / Anti-DDoS)
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "anonymous_client";
+    const { success: isAllowed } = await checkRateLimit(ip);
+
+    if (!isAllowed) {
+      return NextResponse.json(
+        {
+          error: "Rate limit exceeded. You can only send 3 messages per minute. Please try again later.",
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const result = contactSchema.safeParse(body);
 
@@ -19,7 +34,10 @@ export async function POST(req: Request) {
     // 1. Permanently Save to Database (Supabase PostgreSQL / Persistent Storage)
     const saved = await saveMessage(result.data);
 
-    // 2. Optional Instant Alert Webhook (Discord / Telegram)
+    // 2. Dispatch High-End Transactional Emails via Resend (To Admin + Auto-reply to Client)
+    await sendContactNotificationEmails(result.data);
+
+    // 3. Optional Instant Alert Webhook (Discord / Telegram)
     const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
     if (webhookUrl) {
       try {
